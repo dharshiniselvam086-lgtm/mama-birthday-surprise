@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Birthday Surprise 💌</title>
+<style>
+:root{--pink:#f7d8e4;--rose:#c84b75;--deep:#71344c;--cream:#fffaf7}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Georgia,'Times New Roman',serif;background:radial-gradient(circle at top,#fff7fb,#f9dce7 58%,#f4c8d8);color:var(--deep);overflow-x:hidden}
+main{max-width:850px;margin:auto;padding:28px 18px 60px;text-align:center}
+.kicker{letter-spacing:3px;text-transform:uppercase;font:12px Arial,sans-serif;color:#a24b6c}
+h1{font-size:clamp(2rem,7vw,4rem);margin:12px 0;color:#9c345b}
+.subtitle{font-size:1.1rem;line-height:1.6}
+.envelope-wrap{margin:35px auto 20px;max-width:320px}
+.envelope{position:relative;width:100%;height:190px;border:0;background:transparent;cursor:pointer;filter:drop-shadow(0 12px 12px #a94e6c30);transition:transform .25s}
+.envelope:hover{transform:translateY(-5px)}
+.env-body{position:absolute;inset:35px 0 0;background:#f3a9c3;border-radius:8px;clip-path:polygon(0 0,50% 55%,100% 0,100% 100%,0 100%);z-index:2}
+.env-back{position:absolute;inset:35px 0 0;background:#df789c;border-radius:8px}
+.flap{position:absolute;top:35px;left:0;width:100%;height:100px;background:#f8c4d6;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .6s;z-index:3}
+.seal{position:absolute;top:88px;left:calc(50% - 23px);width:46px;height:46px;border-radius:50%;background:#b93e69;color:white;display:grid;place-items:center;font-size:22px;z-index:4}
+.envelope.open .flap{transform:rotateX(180deg);z-index:1}
+.hint{font:14px Arial,sans-serif;color:#8c5067}
+.letter{display:none;background:#fffdfa;border:1px solid #f1d3de;border-radius:18px;padding:clamp(20px,5vw,38px);margin:28px auto;box-shadow:0 16px 40px #8d38501c;text-align:left;line-height:1.8;white-space:pre-wrap;min-height:160px}
+.letter.show{display:block;animation:rise .7s ease}
+.letter h2{text-align:center;color:#b33d69;font-size:2rem;margin-top:0}
+#typed{font-size:1.08rem}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.gallery{display:none;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:25px 0}
+.gallery.show{display:grid}
+.gallery img{width:100%;height:210px;object-fit:cover;border-radius:13px;border:4px solid white;box-shadow:0 7px 20px #78374b20}
+.controls{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:20px 0}
+button.control{border:0;border-radius:999px;background:#a83b65;color:white;padding:12px 18px;font-size:14px;cursor:pointer}
+footer{font:12px Arial,sans-serif;color:#996277;margin-top:36px}
+.heart{position:fixed;pointer-events:none;opacity:.6;animation:float 8s linear infinite}
+@keyframes float{from{transform:translateY(105vh) rotate(0);opacity:0}15%{opacity:.65}to{transform:translateY(-10vh) rotate(30deg);opacity:0}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+  <div class="kicker">A little something made with love</div>
+  <h1>Happy Birthday! 🎂</h1>
+  <p class="subtitle">For the person who has made such a big difference in my life.<br>There’s a little letter waiting for you…</p>
+
+  <div class="envelope-wrap">
+    <button class="envelope" id="envelope" aria-label="Open birthday letter">
+      <div class="env-back"></div><div class="flap"></div><div class="env-body"></div><div class="seal">♥</div>
+    </button>
+  </div>
+  <div class="hint" id="hint">Tap the envelope to open your surprise 💌</div>
+
+  <section class="letter" id="letter">
+    <h2>To my dearest Mama ❤️</h2>
+    <div id="typed"></div>
+  </section>
+
+  <section class="gallery" id="gallery" aria-label="Our memories">
+    <img src="assets/photo1.jpg" alt="Our memory 1" onerror="this.style.display='none'">
+    <img src="assets/photo2.jpg" alt="Our memory 2" onerror="this.style.display='none'">
+    <img src="assets/photo3.jpg" alt="Our memory 3" onerror="this.style.display='none'">
+  </section>
+
+  <div class="controls">
+    <button class="control" id="musicBtn">♫ Play our song</button>
+    <button class="control" id="replayBtn">↻ Read it again</button>
+  </div>
+  <audio id="music" src="assets/song.mp3" loop preload="none"></audio>
+  <footer>Made with lots of love, just for you ✨</footer>
+</main>
+<script>
+/* EDIT THE MESSAGE BELOW. Keep the backticks around the message. */
+const birthdayMessage = `Wishing you the happiest birthday, Mama! ❤️🎂
+
+I want to tell you something from the bottom of my heart.
+
+I will never forget all the help you have given me. Whatever I am able to do today, the freedom I have to study peacefully without financial struggles, and the opportunities I have in my life are all because of you.
+
+Even when my dad said that he couldn’t manage things financially, you helped me without a second thought. You never hesitated to support me, and I can never thank you enough for everything you have done for me.
+
+I feel incredibly lucky to have someone like you in my life. I promise that I will study hard and achieve something great, not only for myself but also for you and my family. One day, I will make you proud and prove that your support and trust in me were worth it.
+
+Thank you so much for everything, Mama. I will always be grateful for your kindness, love, and support. You have made such a big difference in my life, and I will never forget it.
+
+Once again, wishing you the happiest birthday, Mama! ❤️🎉`;
+
+const envelope = document.getElementById('envelope');
+const letter = document.getElementById('letter');
+const typed = document.getElementById('typed');
+const gallery = document.getElementById('gallery');
+const hint = document.getElementById('hint');
+let timer;
+
+function typeMessage(){
+  clearInterval(timer);
+  typed.textContent = '';
+  let i = 0;
+  timer = setInterval(() => {
+    typed.textContent += birthdayMessage.charAt(i);
+    i++;
+    if(i >= birthdayMessage.length) clearInterval(timer);
+  }, 28);
+}
+envelope.addEventListener('click', () => {
+  envelope.classList.add('open');
+  letter.classList.add('show');
+  gallery.classList.add('show');
+  hint.textContent = 'A letter filled with love, just for you ❤️';
+  typeMessage();
+  letter.scrollIntoView({behavior:'smooth',block:'start'});
+});
+document.getElementById('replayBtn').addEventListener('click', () => {
+  if(!letter.classList.contains('show')) {
+    envelope.click();
+  } else {
+    typeMessage();
+    letter.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+});
+const music = document.getElementById('music');
+const musicBtn = document.getElementById('musicBtn');
+musicBtn.addEventListener('click', async () => {
+  if(music.paused) {
+    try { await music.play(); musicBtn.textContent = '♫ Pause music'; }
+    catch(e) { alert('Add your music file as assets/song.mp3, then try again.'); }
+  } else { music.pause(); musicBtn.textContent = '♫ Play our song'; }
+});
+for(let i=0;i<9;i++){
+  const heart=document.createElement('div');
+  heart.className='heart';heart.textContent=['♥','♡','✦'][i%3];
+  heart.style.left=(i*12+3)+'%';heart.style.animationDelay=(i*.8)+'s';
+  heart.style.fontSize=(16+(i%3)*8)+'px';heart.style.color='#c85b82';
+  document.body.appendChild(heart);
+}
+</script>
+</body>
+</html>
